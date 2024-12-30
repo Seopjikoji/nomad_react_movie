@@ -2,20 +2,49 @@ import { useEffect, useState } from "react";
 
 function Hello(){
 
-  function CleanUpFn(){
-    console.log("Destroyed :(")  
-  }
+  // function CleanUpFn(){
+  //   console.log("Destroyed :(")  
+  // }
+
+  // function EffectFn(){
+  //   console.log("Created :)")
+  //   return CleanUpFn
+  // }
+
+  // useEffect(EffectFn,[])
 
   function EffectFn(){
     console.log("Created :)")
-    return CleanUpFn;
   }
 
   function CleanUpFn(){
     console.log("Destroyed :(")  
   }
+  
+  // useEffect(()=>{
+  //   EffectFn()
+  //   return () => {CleanUpFn()} 
+  // }, [])
 
-  useEffect(EffectFn,[])
+  // useEffect(()=>{
+  //   console.log("Created :)")
+  //   return ()=> {console.log("Destroyed :(")}
+  // }, [])
+
+
+  // useEffect(function(){
+  //   console.log("Created :)")
+  //   return function(){
+  //   console.log("Destroyed :(")  
+  //   };
+  // }, [] )
+
+  useEffect(function(){
+    EffectFn()
+    return CleanUpFn;
+  }, [] )
+
+  
     
   return(
     <h1>Hello</h1>
